@@ -24,6 +24,17 @@ public class MoodDialogFragment extends DialogFragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_mood_dialog, container, false);
 
+        Button cancelButton = (Button) rootView.findViewById(R.id.cancelButton);
+        Button submitButton = (Button) rootView.findViewById(R.id.submitButton);
+
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
 
 
         return rootView;
