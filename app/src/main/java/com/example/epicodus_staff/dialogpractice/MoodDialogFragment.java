@@ -17,15 +17,16 @@ import android.widget.TextView;
 
 public class MoodDialogFragment extends DialogFragment{
 
-    RadioButton selectedRadioButton;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_mood_dialog, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_mood_dialog, container, false);
 
         Button cancelButton = (Button) rootView.findViewById(R.id.cancelButton);
         Button submitButton = (Button) rootView.findViewById(R.id.submitButton);
+
+        RadioGroup surveyRadioGroup = (RadioGroup) rootView.findViewById(R.id.moodRadioGroup);
+        int selectedId = surveyRadioGroup.getCheckedRadioButtonId();
+        final RadioButton selectedRadioButton = (RadioButton) rootView.findViewById(selectedId);
 
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -36,8 +37,15 @@ public class MoodDialogFragment extends DialogFragment{
             }
         });
 
+        submitButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.d("testing output", selectedRadioButton.getText().toString());
+                dismiss();
+            }
+        });
 
         return rootView;
     }
-
 }
